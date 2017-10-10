@@ -1,0 +1,133 @@
+{% extends "base.html %}
+{% block title %}ListTemplate{% end %}
+{% block body %}
+    <div class="container">
+        {% module Template("nav.html", project_name=form.get("template").get("project_name")) %}
+        <h1>Template：**ws3213 [Index Page]</h1>
+        <ol class="breadcrumb">
+            <li><a href="#">Project</a></li>
+            <li><a href="#">Template1</a></li>
+        </ol>
+        <form class="form-horizontal" method="post">
+            <div class="row">
+                <div class="form-group">
+                    <div class="col-sm-1">
+                        <label for="seed" class="control-label">Seed:</label>
+                    </div>
+                    <div class="col-sm-4">
+                        <input type="text" class="form-control" id="seed" name="seed" placeholder="seed" value={{ form.get("seed", "") }} >
+                    </div>
+                    <div class="col-sm-4">
+                        <input type="text" class="form-control" id="seed_regex" name="seed_regex" placeholder="Seed Regex" value={{ form.get("seed_regex", "") }} >
+                    </div>
+                    <button class="btn btn-default" type="button" id="btn_seed_text" value="on">测试</button>
+                    <button class="btn btn-default" type="button" data-toggle="collapse" data-target="#parameters_collapse" aria-expanded="false" aria-controls="parameters_collapse">参数设置</button>
+                    <button class="btn btn-default" type="submit" value="on" name="btn_seed_request">请求</button>
+                </div>
+            </div>
+            {% module Template("request_parameter.html") %}
+            <div class="row">
+                <div class="form-group">
+                    <div class="col-sm-1">
+                        <label for="name" class="control-label">Name:</label>
+                    </div>
+                    <div class="col-sm-4">
+                        <input type="text" class="form-control" id="name_xpath" name="name_xpath" placeholder="Name Xpath" value={{ form.get("name_xpath", "") }} >
+                    </div>
+                    <div class="col-sm-4">
+                        <input type="text" class="form-control" id="name_default" name="name_default" placeholder="Name Default" value={{ form.get("name_default", "") }} >
+                    </div>
+                    <button class="btn btn-default xpath_test" type="button" value="on" data-name="name_xpath">测试</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group">
+                    <div class="col-sm-1">
+                        <label for="host" class="control-label">Host:</label>
+                    </div>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control" id="host_default" name="host_default" placeholder="Host Default" value={{ form.get("host_default", "") }} >
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group">
+                    <div class="col-sm-1">
+                        <label for="collectCount" class="control-label">CollectionCount:</label>
+                    </div>
+                    <div class="col-sm-4">
+                        <input type="text" class="form-control" id="collect_count_xpath" name="collect_count_xpath" placeholder="Collect Count Xpath" value={{ form.get("collect_count_xpath", "") }} >
+                    </div>
+                    <div class="col-sm-4">
+                        <input type="text" class="form-control" id="collectCount" name="collect_count" placeholder="收藏数" value={{ form.get("collect_count_default", "") }} >
+                    </div>
+                    <button class="btn btn-default xpath_test" type="button" value="on" data-name="collect_count_xpath">测试</button>
+                </div>
+            </div>
+            <div id="details">
+                <div class="row">
+                    <div class="form-group">
+                        <div class="col-sm-1">
+                            <label for="detail" class="control-label">Detail1:</label>
+                        </div>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" id="detail1_xpath" name="detail1_xpath" placeholder="Detail1 Xpath" value={{ form.get("detail1_xpath", "") }} >
+                        </div>
+                        <button class="btn btn-default xpath_test" type="button" value="on" data-name="detail1_xpath">测试</button>
+                        <button class="btn btn-default" type="button" data-toggle="modal" data-name="detail1" data-target="#modify_modal" name="btn_detail1_modify">改动
+                            <input class="modify" id="detail1_modify_checkbox" type="checkbox" >
+                        </button>
+                        <button class="btn btn-default" type="submit" value="on" name="btn_detail1_tpl">跳转</button>
+                        <button class="btn btn-default btn_detail_add" type="button" value="on" name="btn_detail_add">
+                            <span class="glyphicon glyphicon-plus-sign"></span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div id="nexts">
+                <div class="row">
+                    <div class="form-group">
+                        <div class="col-sm-1">
+                            <label for="next" class="control-label">Next1:</label>
+                        </div>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" id="next1_xpath" name="next1_xpath" placeholder="Next1 Xpath" value={{ form.get("next1_xpath", "") }} >
+                        </div>
+                        <button class="btn btn-default xpath_test" type="button" value="on" data-name="next1_xpath">测试</button>
+                        <button class="btn btn-default btn-modify" type="button" data-name="next1" name="btn_next1_modify">改动
+                            <input class="modify" id="next1_modify_checkbox" type="checkbox" >
+                        </button>
+                        <button class="btn btn-default" type="submit" value="on" name="btn_next1_tpl">跳转</button>
+                        <button class="btn btn-default btn_next_add" type="button" value="on" name="btn_next_add">
+                            <span class="glyphicon glyphicon-plus-sign"></span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div id="buffs">
+                <div class="row">
+                    <div class="form-group">
+                        <div class="col-sm-1">
+                            <label for="buff" class="control-label">Buff1:</label>
+                        </div>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" id="buff1_xpath" name="buff1_xpath" placeholder="Buff1 Xpath" value={{ form.get("buff1_xpath", "") }} >
+                        </div>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" id="buff1_default" name="buff1_default" placeholder="Buff1 Default" value={{ form.get("buff1_default", "") }} >
+                        </div>
+                        <button class="btn btn-default xpath_test" type="button" value="on" data-name="buff1_xpath">测试</button>
+                        <button class="btn btn-default" type="button" data-toggle="modal" data-name="buff1" data-target="#modify_modal" name="btn_buff1_modify">改动
+                            <input class="modify" id="buff1_modify_checkbox" type="checkbox" >
+                        </button>
+                        <button class="btn btn-default btn_buff_add" type="button" value="on" name="btn_buff1_add">
+                            <span class="glyphicon glyphicon-plus-sign"></span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    {% module Template("modify.html") %}
+
+{% end %}

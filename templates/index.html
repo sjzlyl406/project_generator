@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% block title %}
+    {% if form.get("project_name", None) %}
+        {{ form.get("project_name") }}
+    {% else %}
+        Create Project
+    {% end %}
+{% end %}
+
+{% block body %}
+    <div class="container">
+        {% module Template("nav.html", project_name=form.get("project_name")) %}
+        {% if form.get("message", None) %}
+            <p class="bg-warning">{{ form["message"] }}<p>
+        {% end %}
+        <form class="form" method="POST">
+            <div class="row">
+                <div class="col-sm-offset-4 col-sm-4">
+                    {% if form.get("project_name") %}
+                    <input type="text" class="form-control" id="project_name" placeholder="Project Name" name="project_name" value="{{ form.get('project_name') }}">
+                    {% else %}
+                    <input type="text" class="form-control" id="project_name" placeholder="Project Name" name="project_name" value="">
+                    {% end %}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-offset-5">
+                    <div class="radio-inline">
+                        <label>
+                            {% if form.get("project_type") and form["project_type"]=="0" %}
+                            <input type="radio" name="project_type" id="project_type1" value="0" checked>
+                            {% else %}
+                            <input type="radio" name="project_type" id="project_type1" value="0">
+                            {% end %}
+                            列表页+详情页
+                        </label>
+                    </div>
+                    <div class="radio-inline">
+                        <label>
+                            {% if form.get("project_type") and form["project_type"]=="2" %}
+                            <input type="radio" name="project_type" id="project_type2" value="2" checked>
+                            {% else %}
+                            <input type="radio" name="project_type" id="project_type2" value="2">
+                            {% end %}
+                            单列表页
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-offset-5">
+                    <button class="btn btn-default" type="submit" name="create_btn">创建工程</button>
+                    <button class="btn btn-default" type="submit" name="commit_btn">提交工程</button>
+                </div>
+            </div>
+        </form>
+    </div>
+{% end %}
